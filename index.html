@@ -169,18 +169,21 @@
         }
 
         /* Screen 5: Letter Box Frame Adjustments */
-        .letter-box {
-            background-color: #dbeff4;
-            border: 2px solid #333;
-            border-radius: 24px;
-            padding: 45px 40px 40px 40px; /* Slightly higher top padding for breathing room */
-            text-align: left;
-            position: relative;
-            box-shadow: 0 6px 0px rgba(0,0,0,0.05);
-            width: 100%;
-            max-width: 540px; /* Increased from 460px to spread text lines further */
-            margin-top: 50px; 
-        }
+        /* Screen 5: Letter Box Frame Adjustments */
+.letter-box {
+    background-color: #dbeff4;
+    border: 2px solid #333;
+    border-radius: 24px;
+    padding: 45px 40px 40px 40px; 
+    text-align: left;
+    position: relative;
+    box-shadow: 0 6px 0px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 540px; 
+    margin-top: 50px; 
+}
+
+
 
         /* Position Top Asset hanging outside the letter box */
         /* UPGRADED: Bigger and hanging further out */
@@ -315,6 +318,27 @@
         @keyframes fallParticles {
             to { transform: translateY(105vh) rotate(360deg); }
         }
+
+
+        /* Mobile responsiveness adjustments for the letter box illustrations */
+@media (max-width: 600px) {
+    .letter-box {
+        margin-top: 70px;
+        padding: 35px 25px 30px 25px; /* Gives the text adequate container room */
+    }
+    
+    .top-outside-snoopy {
+        width: 100px;
+        top: -60px;
+        left: 5px;
+    }
+
+    .bottom-outside-snoopy {
+        width: 120px;       /* Scales down slightly so it doesn't clip the screen boundary */
+        right: -15px;       /* Pulls Snoopy inside the viewport margin */
+        bottom: -45px;      /* Anchors it neatly against the mobile frame */
+    }
+}
     </style>
 </head>
 <body>
@@ -374,9 +398,8 @@
                 <p id="p1" data-text="Happy Birthday, Ponnu ❤️
 You are truly one of the most caring and genuine people I’ve ever met. The way you always go out of your way to make people feel loved, seen, and comfortable is something really rare, and I hope you never change that beautiful part of yourself."></p>
 
-<p id="p2" data-text="I’m so happy to see you growing into such a strong, peaceful, and happy version of yourself, and I feel lucky to be part of your life through it all. You deserve all the good things coming your way - the happiness, success, peace, and love that you give so effortlessly to everyone around you. 
-
-Thank you for being you. The world feels a little softer with you in it."></p>
+<p id="p2" data-text="You deserve all the peace, happiness, and beautiful things life has to offer.
+Thank you for being you!"></p>
                 <p id="f" class="letter-footer" data-text="Love you always. Stay the same ✨"></p>
                 
                 <img src="snoopy_gift.png" class="bottom-outside-snoopy" alt="Snoopy Balloons">
