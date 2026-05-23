@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        /* Base Styling & Playful Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Fredoka', cursive, sans-serif;
+        }
+
+        /* Shifted & Prominent Light Pastel Animated Background */
+        body {
+            /* Using multiple background layers for a more prominent but soft color bleed */
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(251, 194, 235, 0.5), transparent 60%), /* Pastel Pink */
+                radial-gradient(circle at 80% 20%, rgba(161, 196, 253, 0.5), transparent 60%), /* Pastel Blue */
+                radial-gradient(circle at 50% 80%, rgba(250, 208, 196, 0.4), transparent 70%), /* Pastel Peach */
+                radial-gradient(circle at 10% 70%, rgba(212, 252, 121, 0.3), transparent 60%), /* Pastel Green */
+                #fffcf9; /* Light cream base */
+            background-size: 200% 200%;
+            animation: gradientShift 20s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Ambient Pulsing Background Stars & Elements (Rich Field) */
+        .star, .bg-element {
+            position: absolute;
+            opacity: 0.5;
+            user-select: none;
+            animation: floatAmbient 6s ease-in-out infinite alternate;
+        }
+        
+        /* Star Field */
+        .star-1 { top: 10%; left: 5%; color: #a1c4fd; font-size: 32px; animation-delay: 0s; }
+        .star-2 { top: 8%; right: 10%; color: #fbc2eb; font-size: 32px; animation-delay: 1s; }
+        .star-3 { bottom: 15%; left: 8%; color: #fad0c4; font-size: 32px; animation-delay: 2s; }
+        .star-4 { bottom: 10%; right: 8%; color: #e6e6fa; font-size: 32px; animation-delay: 1.5s; }
+        .star-5 { top: 40%; left: 3%; color: #d4fc79; font-size: 24px; animation-delay: 0.5s; }
+        .star-6 { bottom: 40%; right: 3%; color: #fff176; font-size: 24px; animation-delay: 1.2s; }
+        .star-7 { top: 60%; left: 12%; color: #ffd1ff; font-size: 28px; animation-delay: 2.5s; }
+        .star-8 { top: 25%; right: 18%; color: #d1f7ff; font-size: 28px; animation-delay: 0.8s; }
+
+        /* Small Circle Accents */
+        .dot { border-radius: 50%; background-color: rgba(0,0,0,0.03); }
+        .bg-dot-1 { width: 40px; height: 40px; top: 15%; left: 20%; animation-delay: 0s; }
+        .bg-dot-2 { width: 60px; height: 60px; bottom: 20%; right: 25%; animation-delay: 1s; }
+        .bg-dot-3 { width: 30px; height: 30px; top: 70%; left: 5%; animation-delay: 2s; }
+
+        @keyframes floatAmbient {
+            0% { transform: translateY(0) scale(0.9) rotate(0deg); opacity: 0.4; }
+            100% { transform: translateY(-20px) scale(1.1) rotate(20deg); opacity: 0.7; }
+        }
+
+        /* Centralized Content Framework Container */
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Display State Controllers */
+        .screen {
+            display: none;
+            opacity: 0;
+            transform: scale(0.96);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Pure Typewriter Headings (No Cursor) */
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+            min-height: 2.8rem;
+            display: inline-block;
+        }
+
+        .bold-text {
+            font-weight: 700;
+            font-size: 2.4rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Upscaled Media Graphic Layouts */
+        .graphic-img {
+            max-width: 260px; 
+            height: auto;
+            margin-bottom: 25px;
+            user-select: none;
+        }
+
+        /* Playful Interactive Buttons */
+        .btn-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+            min-height: 60px;
+            position: relative;
+            width: 100%;
+        }
+
+        button {
+            padding: 12px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background-color: #ffffff;
+            border: 2px solid #333333;
+            border-radius: 16px;
+            cursor: pointer;
+            color: #333;
+            transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 0px #333;
+        }
+
+        button:hover {
+            background-color: #fffdf5;
+            box-shadow: 0 6px 0px #333;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+        /* REFINED: Removed dodge animation, stable no button */
+        #no-btn {
+            position: relative;
+            z-index: 1000;
+        }
+
+        /* Screen 5: Letter Box Frame Adjustments */
+        .letter-box {
+            background-color: #dbeff4;
+            border: 2px solid #333;
+            border-radius: 24px;
+            padding: 45px 40px 40px 40px; /* Slightly higher top padding for breathing room */
+            text-align: left;
+            position: relative;
+            box-shadow: 0 6px 0px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 540px; /* Increased from 460px to spread text lines further */
+            margin-top: 50px; 
+        }
+
+        /* Position Top Asset hanging outside the letter box */
+        /* UPGRADED: Bigger and hanging further out */
+        .top-outside-snoopy {
+            position: absolute;
+            top: -85px;
+            left: 0px;
+            width: 150px; 
+            height: auto;
+            z-index: 15;
+            user-select: none;
+        }
+
+        /* Bottom-Right anchoring configuration */
+        /* UPGRADED: Significantly Bigger and hanging further out */
+        .bottom-outside-snoopy {
+            position: absolute;
+            bottom: -55px;
+            right: -85px;
+            width: 160px;
+            height: auto;
+            z-index: 15;
+            user-select: none;
+        }
+
+        /* REFINED: Pre-size paragraph for typewriter text */
+        .letter-box p {
+            font-size: 1.05rem;
+            color: #2b4c54;
+            line-height: 1.75;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 10;
+            min-height: 1em; /* Space before content types */
+            white-space: pre-line;
+        }
+
+        .letter-box .letter-footer {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 5px;
+            min-height: 1.2em; /* Ensure single line has height */
+        }
+
+        /* This targets the specific paragraph text lines dynamically if needed, 
+   or you can style the block directly */
+#p2 {
+    font-style: normal;
+}
+
+        /* REPLACED EMOJI WITH BUTTON: Centered next step button */
+        .see-memories-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            align-self: center; /* Override left text align */
+            background-color: #ffffff;
+            border: 2px solid #333;
+            color: #333;
+            position: relative;
+            z-index: 20;
+        }
+
+        /* Screen 6: Polaroid Layout Structuring with Hover Interaction */
+        .collage-container {
+            position: relative;
+            width: 380px;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 14px 14px 32px 14px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 2px solid #333;
+            position: absolute;
+            width: 190px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* HOVER INTERACTION: Polaroids pop up on hover */
+        .polaroid:hover {
+            z-index: 10; /* Bring to front */
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            /* Important to re-apply the rotation but scale it */
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* REFINED LAYOUT & HOVER EFFECT FOR BIGGER IMAGES */
+        .p1 { transform: rotate(-7deg); left: -10px; top: 10px; z-index: 2; width: 200px;}
+        .p1:hover { transform: rotate(-3deg) scale(1.1); } /* Smoothed angle on hover */
+        .p1 img { height: 170px; }
+        
+        .p2 { transform: rotate(8deg); right: -10px; top: 30px; z-index: 1; width: 200px; }
+        .p2:hover { transform: rotate(3deg) scale(1.1); }
+        .p2 img { height: 170px; }
+        
+        .p3 { transform: rotate(-2deg); left: 75px; top: 185px; z-index: 3; width: 230px; }
+        .p3:hover { transform: rotate(0deg) scale(1.1); }
+        .p3 img { height: 190px; }
+
+        /* UPGRADED: Significantly expanded bottom Snoopy */
+        .collage-snoopy {
+            position: absolute;
+            bottom: -55px;
+            right: -30px;
+            width: 160px; 
+            z-index: 4;
+            pointer-events: none; /* Let hover pass through to polaroid */
+        }
+
+        /* Confetti Canvas Particles */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0.85;
+            top: -10px;
+            border-radius: 50%;
+            animation: fallParticles 3.5s linear infinite;
+        }
+        @keyframes fallParticles {
+            to { transform: translateY(105vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="star star-1">★</div>
+    <div class="star star-2">★</div>
+    <div class="star star-3">★</div>
+    <div class="star star-4">★</div>
+    <div class="star star-5">★</div>
+    <div class="star star-6">★</div>
+    <div class="star star-7">★</div>
+    <div class="star star-8">★</div>
+    <div class="bg-element dot bg-dot-1"></div>
+    <div class="bg-element dot bg-dot-2"></div>
+    <div class="bg-element dot bg-dot-3"></div>
+
+    <div class="container">
+
+        <div class="screen active" id="screen-1">
+            <h1 data-text="happy 24th birthday korangee!"></h1>
+            <img class="graphic-img" src="snoopy_cake.png" alt="Snoopy Cake">
+            <div class="btn-container">
+                <button onclick="nextScreen(2)">next</button>
+            </div>
+        </div>
+
+        <div class="screen" id="screen-2">
+            <h1 data-text="i have surprise for you, wanna see?"></h1>
+            <img class="graphic-img" src="snoopy_bday.png" alt="Snoopy Happy">
+            <div class="btn-container" id="question-btns">
+                <button onclick="nextScreen(4)">yess</button>
+                <button id="no-btn" onclick="handleReject()">no thanks</button>
+            </div>
+        </div>
+
+        <div class="screen" id="screen-3">
+            <h1 class="bold-text">Pretty please</h1>
+            <p style="margin-top: -15px; margin-bottom: 20px; font-size: 1.1rem; font-style: italic;">I made this for you</p>
+            <img class="graphic-img" src="snoopy_sad.png" alt="Snoopy Pleading">
+            <div class="btn-container">
+                <button onclick="resetReturn()">try again</button>
+            </div>
+        </div>
+
+        <div class="screen" id="screen-4">
+            <h1 id="cake-title" data-text="Make a wish"></h1>
+            <img class="graphic-img" id="cake-img" style="max-width: 240px;" src="candle_burning.png" alt="Birthday Cake lit">
+            <div class="btn-container">
+                <button id="blow-btn" onclick="handleBlowInteraction()">blow</button>
+            </div>
+        </div>
+
+        <div class="screen" id="screen-5">
+            <div class="letter-box">
+                <img src="snoopy_cake.png" class="top-outside-snoopy" alt="Snoopy icon">
+                
+                <p id="p1" data-text="Happy Birthday, Ponnu ❤️
+You are truly one of the most caring and genuine people I’ve ever met. The way you always go out of your way to make people feel loved, seen, and comfortable is something really rare, and I hope you never change that beautiful part of yourself."></p>
+
+<p id="p2" data-text="I’m so happy to see you growing into such a strong, peaceful, and happy version of yourself, and I feel lucky to be part of your life through it all. You deserve all the good things coming your way - the happiness, success, peace, and love that you give so effortlessly to everyone around you. 
+
+Thank you for being you. The world feels a little softer with you in it."></p>
+                <p id="f" class="letter-footer" data-text="Love you always. Stay the same ✨"></p>
+                
+                <img src="snoopy_gift.png" class="bottom-outside-snoopy" alt="Snoopy Balloons">
+                
+                <button class="see-memories-btn" onclick="nextScreen(6)">See our memories 👉</button>
+            </div>
+        </div>
+
+        <div class="screen" id="screen-6">
+            <div class="collage-container">
+                <div class="polaroid p1">
+                    <img src="pic1.jpeg" alt="Memory 1">
+                </div>
+                <div class="polaroid p2">
+                    <img src="pic2.jpeg" alt="Memory 2">
+                </div>
+                <div class="polaroid p3">
+                    <img src="pic3.jpeg" alt="Memory 3">
+                </div>
+                <img class="collage-snoopy" src="snoopy_flowers.png" alt="Snoopy Flowers">
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let blowCount = 0;
+        let typeInterval;
+        let textSegments; // Global array for letter segmentation
+        let segmentIndex = 0; // Segment tracking index
+
+        // Custom Typewriter Effect (Clean Character Injection, No Cursor Tracking)
+        function typeWriterEffect(element, text, speed = 40, callback) {
+            if (!element || !text) return; // Basic validation
+            clearInterval(typeInterval);
+            element.textContent = "";
+            let i = 0;
+            typeInterval = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typeInterval);
+                    if (callback) callback(); // Run callback after text is complete
+                }
+            }, speed);
+        }
+
+        // Sequence State Management System
+        function nextScreen(screenNum) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            const targetScreen = document.getElementById(`screen-${screenNum}`);
+            if(targetScreen) {
+                targetScreen.classList.add('active');
+                
+                // Initialize text typing sequence if heading structure data parameters exist
+                const textEl = targetScreen.querySelector('h1[data-text]');
+                if (textEl) {
+                    typeWriterEffect(textEl, textEl.getAttribute('data-text'));
+                }
+
+                // REFINED: Letter screen initialization
+                if(screenNum === 5){
+                    startSequentialTyping();
+                }
+            }
+
+            if(screenNum === 6) {
+                startConfettiCelebration();
+            }
+        }
+
+        function handleReject() {
+            // Swap asset to candle_dead when sent over to the rejection loop screen
+            document.getElementById('cake-img').src = "candle_dead.png";
+            nextScreen(3);
+        }
+
+        function resetReturn() {
+            // Simple return, no dodge counter to reset
+            // Revert back to the initial candle asset state when returning to try again
+            document.getElementById('cake-img').src = "candle_burning.png";
+            nextScreen(2);
+        }
+
+        // REFINED Streamlined Interaction Flow for Candle Wish
+        function handleBlowInteraction() {
+            blowCount++;
+            const titleEl = document.getElementById('cake-title');
+            const buttonEl = document.getElementById('blow-btn');
+            const cakeImgEl = document.getElementById('cake-img');
+
+            if (blowCount === 1) {
+                // Playful initial fail, skip huff puff
+                typeWriterEffect(titleEl, "You didn't blow, did you? Try harder!");
+                buttonEl.textContent = "Blow Harder!";
+            } else if (blowCount === 2) {
+                // Success step, directly swap candle and complete wish
+                typeWriterEffect(titleEl, "Wish complete! Happy Birthday! 🎉");
+                // Swap image to unlit candle asset path
+                cakeImgEl.src = "candle_dead.png"; 
+                buttonEl.textContent = "See surprise! 🎉";
+                // Transition to letter page next
+                buttonEl.setAttribute('onclick', 'nextScreen(5)');
+            }
+        }
+
+        // NEW: Handles sequential paragraph-to-paragraph typing for letter
+        function startSequentialTyping() {
+            // 1. Identify key text paragraph holders
+            const paragraphHolders = [
+                {id: 'p1', delay: 400}, // p1 types after small start delay
+                {id: 'p2', delay: 800}, // p2 types after p1 completes and longer delay
+                {id: 'f', delay: 800}  // footer types after p2 completes and delay
+            ];
+
+            // 2. Map data and clean current holders
+            textSegments = paragraphHolders.map(holder => {
+                const element = document.getElementById(holder.id);
+                if (element) {
+                    const text = element.getAttribute('data-text');
+                    element.textContent = ""; // Clear existing data to prepare for typing
+                    return { element, text, delay: holder.delay };
+                }
+                return null;
+            }).filter(seg => seg !== null); // Remove missing IDs
+
+            // 3. Reset segment tracking and trigger chain
+            segmentIndex = 0;
+            triggerNextSegment(); 
+        }
+
+        function triggerNextSegment() {
+            if (segmentIndex >= textSegments.length) {
+                return; // Reached end, stop chain
+            }
+
+            const current = textSegments[segmentIndex];
+            segmentIndex++; // Prime next index
+
+            // 4. Chain typeWriterEffect with delay for human typing look
+            setTimeout(() => {
+                // Slower speed for long letter content (80ms per char)
+                typeWriterEffect(current.element, current.text, 60, triggerNextSegment);
+            }, current.delay);
+        }
+
+        // Canvas Confetti Array Initialization
+        function startConfettiCelebration() {
+            const colors = ['#fbc2eb', '#a1c4fd', '#fad0c4', '#e6e6fa', '#fff176'];
+            // Richer confetti count
+            for (let i = 0; i < 90; i++) {
+                const confettiElement = document.createElement('div');
+                confettiElement.classList.add('confetti');
+                confettiElement.style.left = Math.random() * 100 + 'vw';
+                confettiElement.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confettiElement.style.animationDelay = Math.random() * 2 + 's';
+                confettiElement.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                document.body.appendChild(confettiElement);
+            }
+        }
+
+        // Initialize script trigger loop on document load
+        document.addEventListener("DOMContentLoaded", () => {
+            const firstHeading = document.querySelector('#screen-1 h1[data-text]');
+            if (firstHeading) {
+                typeWriterEffect(firstHeading, firstHeading.getAttribute('data-text'));
+            }
+        });
+    </script>
+</body>
+</html>
